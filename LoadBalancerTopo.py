@@ -14,7 +14,7 @@ def emptyNet():
         h1 = net.addHost( 'h1', ip='10.0.0.1' )
         h2 = net.addHost( 'h2', ip='10.0.0.2' )
         h3 = net.addHost( 'Server', ip='10.0.0.3' )
-	
+
         s1 = net.addSwitch( 's1' )
         s2 = net.addSwitch( 's2' )
         s3 = net.addSwitch( 's3' )
@@ -42,4 +42,3 @@ def emptyNet():
 if __name__ == '__main__':
     setLogLevel( 'info' )
     emptyNet()
-                   
