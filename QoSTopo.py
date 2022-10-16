@@ -7,33 +7,32 @@ from mininet.log import setLogLevel, info
 
 def emptyNet():
 
-	net = Mininet(controller=RemoteController, switch=OVSKernelSwitch)
+    net = Mininet(controller=RemoteController, switch=OVSKernelSwitch)
 
-	c1 = net.addController('c1', controller=RemoteController, ip="127.0.0.1", port=6633)
+    c1 = net.addController('c1', controller=RemoteController, ip="127.0.0.1", port=6633)
 
-	h1 = net.addHost( 'h1', ip='10.0.0.1' )
-	h2 = net.addHost( 'h2', ip='10.0.0.2' )
-	h3 = net.addHost( 'h3', ip='10.0.0.3' )
-	h4 = net.addHost( 'Server', ip='10.0.0.4' )
-	
-	s1 = net.addSwitch( 's1' )
-	s2 = net.addSwitch( 's2' )
+    h1 = net.addHost( 'h1', ip='10.0.0.1' )
+    h2 = net.addHost( 'h2', ip='10.0.0.2' )
+    h3 = net.addHost( 'h3', ip='10.0.0.3' )
+    h4 = net.addHost( 'Server', ip='10.0.0.4' )
 
-	s1.linkTo( h1 )
-	s1.linkTo( h2 )
-	s1.linkTo( h3 )
-	s1.linkTo( s2 )
-	s2.linkTo( h4 )
+    s1 = net.addSwitch( 's1' )
+    s2 = net.addSwitch( 's2' )
 
-	net.build()
-	c1.start()
-	s1.start([c1])
-	s2.start([c1])
+    s1.linkTo( h1 )
+    s1.linkTo( h2 )
+    s1.linkTo( h3 )
+    s1.linkTo( s2 )
+    s2.linkTo( h4 )
 
-	CLI( net )
-	net.stop()
+    net.build()
+    c1.start()
+    s1.start([c1])
+    s2.start([c1])
+
+    CLI( net )
+    net.stop()
 
 if __name__ == '__main__':
-	setLogLevel( 'info' )
-	emptyNet()
-                   
+    setLogLevel( 'info' )
+    emptyNet()
